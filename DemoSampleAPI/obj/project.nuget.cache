@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Nu6F/TqHcVc=",
+  "dgSpecHash": "tQ2HAk0bahY=",
   "success": true,
   "projectFilePath": "/Users/yogawicaksono/Documents/Sample API/C#/DemoSampleAPI/DemoSampleAPI.csproj",
   "expectedPackageFiles": [
+    "/Users/yogawicaksono/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/yogawicaksono/.nuget/packages/dapper/2.1.66/dapper.2.1.66.nupkg.sha512",
     "/Users/yogawicaksono/.nuget/packages/dotenv.net/3.2.1/dotenv.net.3.2.1.nupkg.sha512",
     "/Users/yogawicaksono/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/9.0.6/microsoft.aspnetcore.authentication.jwtbearer.9.0.6.nupkg.sha512",

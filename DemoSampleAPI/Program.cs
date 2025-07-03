@@ -1,6 +1,6 @@
 using System.Text;
 using DemoSampleAPI.Auth;
-using DemoSampleAPI.Data;
+using DemoSampleAPI.Helpers.DbConnection.Services;
 using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -13,12 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddOpenApi();
 
-// Database Connection
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
-    ));
+// MySql Connection
+builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
 
 // JWT
 builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>

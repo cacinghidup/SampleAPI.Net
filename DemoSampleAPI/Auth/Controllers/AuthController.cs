@@ -20,7 +20,7 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginRequest? loginRequest)
     {
-        if (string.IsNullOrWhiteSpace(loginRequest?.UserName) || string.IsNullOrWhiteSpace(loginRequest?.Password))
+        if (string.IsNullOrWhiteSpace(loginRequest?.Username) || string.IsNullOrWhiteSpace(loginRequest?.Password))
             return ApiResponse.BadRequest("Please Provide Username and Password!");
 
         var token = _authService.Login(loginRequest);
@@ -29,4 +29,5 @@ public class AuthController : ControllerBase
 
         return ApiResponse.Ok(data: token);
     }
+
 }

@@ -15,9 +15,9 @@ public class AuthService : IAuthServices
 
     public string? Login(LoginRequest loginRequest)
     {
-        if (loginRequest.UserName == "admin" && loginRequest.Password == "admin")
+        if (loginRequest.Username == "admin" && loginRequest.Password == "admin")
         {
-            return _jwtTokenGenerator.GenerateToken(loginRequest.UserName);
+            return _jwtTokenGenerator.GenerateToken(loginRequest.Username);
         }
 
         return null;
