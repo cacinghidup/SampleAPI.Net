@@ -1,4 +1,6 @@
 using System;
+using DemoSampleAPI.Helpers;
+using DemoSampleAPI.User.DTO;
 using DemoSampleAPI.User.Models;
 using DemoSampleAPI.User.Repositories;
 
@@ -17,16 +19,26 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public string RegisterUser(UserModel user)
+    public async Task<ResultService?> RegisterUser(RegisterRequest user)
     {
-        bool checkUser = _userRepository.CheckUsername(user.Username);
-        if (!checkUser) return "Username Already Taken!";
+        var userModel = new UserModel()
+        {
+            Username = user.Username,
+            Email = user.Email,
+            CreateAt = DateTime.UtcNow,
+            TelCode = user.TelCode,
+            Telephone = user.Telephone,
+            IsAdmin = false,
+        };
 
-        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+        bool checkUser = await _userRepository.CheckUsername(userModel.Username);
+        if (!checkUser) return BaseServiceResult.Bad("Username Already Taken!");
 
-        var createUser = _userRepository.CreateAsync(user);
-        if (createUser.Result > 0) return "Create Account Success!";
+        userModel.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-        return "Can't create account at this time. Please try again later!";
+        var createUser = await _userRepository.CreateAsync(userModel);
+        if (createUser > 0) return BaseServiceResult.Ok("Create Account Success!");
+
+        return BaseServiceResult.Error("Can't create account at this time. Please try again later!");
     }
 }

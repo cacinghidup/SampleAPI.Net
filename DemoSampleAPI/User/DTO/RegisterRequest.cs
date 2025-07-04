@@ -9,7 +9,7 @@ public class RegisterRequest
     public string Username { get; set; } = string.Empty;
 
     [Required]
-    [MinLength(6)]
+    [MinLength(6, ErrorMessage = "Please provide more than 6 character!")]
     public string Password { get; set; } = string.Empty;
 
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

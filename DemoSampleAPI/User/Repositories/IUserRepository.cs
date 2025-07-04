@@ -7,5 +7,5 @@ public interface IUserRepository
 {
     Task<IEnumerable<UserModel>> SearchByUsername(string username);
     Task<int> CreateAsync(UserModel user);
-    bool CheckUsername(string username);
+    Task<bool> CheckUsername(string user);
 }

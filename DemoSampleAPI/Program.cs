@@ -1,6 +1,7 @@
 using System.Text;
 using DemoSampleAPI.Auth;
 using DemoSampleAPI.Helpers.DbConnection.Services;
+using DemoSampleAPI.User;
 using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -34,6 +35,7 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
 
 // Dependency Injection
 builder.Services.AddAuthModule();
+builder.Services.AddUserModule();
 
 // Controllers
 builder.Services.AddControllers();

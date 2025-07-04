@@ -53,3 +53,5 @@
 /Users/yogawicaksono/Documents/Sample API/C#/DemoSampleAPI/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
 /Users/yogawicaksono/Documents/Sample API/C#/DemoSampleAPI/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/yogawicaksono/Documents/Sample API/C#/DemoSampleAPI/bin/Debug/net9.0/dotenv.net.dll
+/Users/yogawicaksono/Documents/Sample API/C#/DemoSampleAPI/bin/Debug/net9.0/BCrypt.Net-Next.dll
+/Users/yogawicaksono/Documents/Sample API/C#/DemoSampleAPI/obj/Debug/net9.0/DemoSampleAPI.sourcelink.json
