@@ -18,16 +18,16 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest? loginRequest)
+    public async Task<IActionResult> Login([FromBody] LoginRequest? loginRequest)
     {
         if (string.IsNullOrWhiteSpace(loginRequest?.Username) || string.IsNullOrWhiteSpace(loginRequest?.Password))
             return ApiResponse.BadRequest("Please Provide Username and Password!");
 
-        var token = _authService.Login(loginRequest);
-        if (token == null)
-            return ApiResponse.BadRequest("Login Failed!");
+        var token = await _authService.Login(loginRequest);
+        if (token.Data == null)
+            return ApiResponse.BadRequest(token!.Message);
 
-        return ApiResponse.Ok(data: token);
+        return ApiResponse.Ok(data: token.Data);
     }
 
 }

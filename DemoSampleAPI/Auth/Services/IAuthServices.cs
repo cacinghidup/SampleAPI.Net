@@ -1,9 +1,10 @@
 using System;
 using DemoSampleAPI.Auth.DTO;
+using DemoSampleAPI.Helpers;
 
 namespace DemoSampleAPI.Auth.Services;
 
 public interface IAuthServices
 {
-    string? Login(LoginRequest loginRequest);
+    Task<ResultService<string>> Login(LoginRequest loginRequest);
 }
