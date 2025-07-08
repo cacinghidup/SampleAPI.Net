@@ -13,6 +13,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Testing Local
+builder.WebHost.UseKestrel();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5166);
+    options.ListenAnyIP(7296, listenOptions =>
+    {
+        listenOptions.UseHttps();
+    });
+});
 
 // MySql Connection
 builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
@@ -46,6 +59,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+if (app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
 }
 
 // Handle Exceptions
@@ -68,6 +87,5 @@ app.UseExceptionHandler(errorApp =>
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.UseHttpsRedirection();
 
 app.Run();
